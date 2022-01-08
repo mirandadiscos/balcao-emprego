@@ -1,0 +1,43 @@
+<% if headhunter_signed_in? || user_signed_in?%>
+<h1>Jobs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @jobs.each do |job| %>
+      <tr>
+        <td><h2><%= link_to job.title, job %></h2></td>
+        <td><%= link_to 'Edit', edit_job_path(job) %>
+            <%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% else %>
+
+<h1>Headhunter</h1>
+    <p><%= link_to 'Sign Up', new_headhunter_registration_path %> or <%= link_to 'Sign in', new_headhunter_session_path %>  </p>
+
+    <br>
+
+    <h1>Candidate</h1>
+    <p><%= link_to 'Sign Up', new_user_registration_path %> or <%= link_to 'Sign in', new_user_session_path %>  </p>
+<% end %>
+
+
+    <% if user_signed_in?%>
+    <p><%= link_to 'Logout', destroy_user_session_path, method: :delete %></p>
+    <% end %>
+
+    <% if headhunter_signed_in? %>
+    <p><%= link_to 'Logout', destroy_headhunter_session_path, method: :delete %></p>
+    <% end %>
