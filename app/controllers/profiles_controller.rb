@@ -3,20 +3,22 @@ class ProfilesController < ApplicationController
 
   # GET /profiles or /profiles.json
   def index
-    @profiles = current_user.profile
+    @profiles = Profile.all
   end
 
   # GET /profiles/1 or /profiles/1.json
   def show
+    @profile = current_user.profile
   end
 
   # GET /profiles/new
   def new
-    @profile = Profile.new
+    @profile = current_user.profile.new
   end
 
   # GET /profiles/1/edit
   def edit
+    @profile = current_user.profile
   end
 
   # POST /profiles or /profiles.json
