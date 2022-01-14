@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
             root_path   
         else
             jobs_path
-        end
-        
+        end  
     end
 end
